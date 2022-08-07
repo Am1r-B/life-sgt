@@ -13,6 +13,8 @@ function love.load()
       grid[y][x] = false
     end
   end
+  
+  love.keyboard.setKeyRepeat(true)
 end
 
 function love.update()
