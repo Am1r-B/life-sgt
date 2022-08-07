@@ -30,39 +30,28 @@ function love.keypressed()
   for y = 1, gridYCount do
     nextGrid[y] = {}
     for x = 1, gridXCount do
-      nextGrid[y][x] = true
+      -- Moved
+      local neighborCount = 0
+      
+      for dy = -1, 1 do
+        for dx = -1, 1 do
+          if not (dy == 0 and dx == 0)
+          and grid[y + dy]
+          and grid[y + dy][x + dx] then
+            neighborCount = neighborCount + 1
+          end
+        end
+      end
+      
+      nextGrid[y][x] = neighborCount == 3
+        or (grid[y][x] and neighborCount == 2)
     end
   end
   
   grid = nextGrid
 end
 
--- Temporary
-function love.mousepressed(mouseX, mouseY, button)
-  if button == 2 then
-    local neighborCount = 0
-    
-    print('Finding neighbors of grid['..selectedY..']['..selectedX..']')
-    
-    for dy = -1, 1 do
-      for dx = -1, 1 do
-        
-        print(' Checking grid['..selectedY + dy..']['..selectedX + dx..']')
-        
-        if not (dy == 0 and dx == 0)
-        and grid[selectedY + dy]
-        and grid[selectedY + dy][selectedX + dx] then
-          
-          print('  Neighbor found')
-          neighborCount = neighborCount + 1
-        end
-      end
-    end
-    
-    print('Total neighbors: '..neighborCount)
-    print()
-  end
-end
+-- Removed: function love.mousepressed(mouseX, mouseY, button)
 
 function love.draw()
   for y = 1, gridYCount do
