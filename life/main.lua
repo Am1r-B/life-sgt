@@ -1,9 +1,14 @@
 function love.draw()
-  love.graphics.rectangle(
-    'fill',
-    0,
-    0,
-    4,
-    4
-  )
+  for x = 1, 70 do
+    local cellSize = 5
+    local cellDrawSize = cellSize - 1
+    
+    love.graphics.rectangle(
+      'fill',
+      (x - 1) * cellSize,
+      0,
+      cellDrawSize,
+      cellDrawSize
+    )
+  end
 end
