@@ -13,15 +13,15 @@ function love.load()
       grid[y][x] = false
     end
   end
-  
-  -- Temporary
-  grid[1][1] = true
-  grid[1][2] = true
 end
 
 function love.update()
   selectedX = math.min(math.floor(love.mouse.getX() / cellSize) + 1, gridXCount)
   selectedY = math.min(math.floor(love.mouse.getY() / cellSize) + 1, gridYCount)
+  
+  if love.mouse.isDown(1) then
+    grid[selectedY][selectedX] = true
+  end
 end
 
 function love.draw()
