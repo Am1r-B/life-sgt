@@ -21,6 +21,8 @@ function love.update()
   
   if love.mouse.isDown(1) then
     grid[selectedY][selectedX] = true
+  elseif love.mouse.isDown(2) then
+    grid[selectedY][selectedX] = false
   end
 end
 
@@ -30,7 +32,6 @@ function love.keypressed()
   for y = 1, gridYCount do
     nextGrid[y] = {}
     for x = 1, gridXCount do
-      -- Moved
       local neighborCount = 0
       
       for dy = -1, 1 do
@@ -50,8 +51,6 @@ function love.keypressed()
   
   grid = nextGrid
 end
-
--- Removed: function love.mousepressed(mouseX, mouseY, button)
 
 function love.draw()
   for y = 1, gridYCount do
