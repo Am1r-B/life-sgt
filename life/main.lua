@@ -17,7 +17,12 @@ function love.draw()
     for x = 1, gridXCount do
       local cellDrawSize = cellSize - 1
       
-      love.graphics.setColor(.86, .86, .86)
+      if x == selectedX and y == selectedY then
+        love.graphics.setColor(0, 1, 1)
+      else
+        love.graphics.setColor(.86, .86, .86)
+      end
+      
       love.graphics.rectangle(
         'fill',
         (x - 1) * cellSize,
@@ -27,8 +32,4 @@ function love.draw()
       )
     end
   end
-  
-  -- Temporary
-  love.graphics.setColor(0, 0, 0)
-  love.graphics.print('selected x: '..selectedX..', selected y: '..selectedY)
 end
