@@ -5,6 +5,18 @@ function love.load()
   
   gridXCount = 70
   gridYCount = 50
+  
+  grid = {}
+  for y = 1, gridYCount do
+    grid[y] = {}
+    for x = 1, gridXCount do
+      grid[y][x] = false
+    end
+  end
+  
+  -- Temporary
+  grid[1][1] = true
+  grid[1][2] = true
 end
 
 function love.update()
@@ -19,6 +31,8 @@ function love.draw()
       
       if x == selectedX and y == selectedY then
         love.graphics.setColor(0, 1, 1)
+      elseif grid[y][x] then
+        love.graphics.setColor(1, 0, 1)
       else
         love.graphics.setColor(.86, .86, .86)
       end
