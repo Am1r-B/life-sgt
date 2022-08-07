@@ -24,6 +24,19 @@ function love.update()
   end
 end
 
+function love.keypressed()
+  local nextGrid = {}
+  
+  for y = 1, gridYCount do
+    nextGrid[y] = {}
+    for x = 1, gridXCount do
+      nextGrid[y][x] = true
+    end
+  end
+  
+  grid = nextGrid
+end
+
 -- Temporary
 function love.mousepressed(mouseX, mouseY, button)
   if button == 2 then
