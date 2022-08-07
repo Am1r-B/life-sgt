@@ -24,6 +24,33 @@ function love.update()
   end
 end
 
+-- Temporary
+function love.mousepressed(mouseX, mouseY, button)
+  if button == 2 then
+    local neighborCount = 0
+    
+    print('Finding neighbors of grid['..selectedY..']['..selectedX..']')
+    
+    for dy = -1, 1 do
+      for dx = -1, 1 do
+        
+        print(' Checking grid['..selectedY + dy..']['..selectedX + dx..']')
+        
+        if not (dy == 0 and dx == 0)
+        and grid[selectedY + dy]
+        and grid[selectedY + dy][selectedX + dx] then
+          
+          print('  Neighbor found')
+          neighborCount = neighborCount + 1
+        end
+      end
+    end
+    
+    print('Total neighbors: '..neighborCount)
+    print()
+  end
+end
+
 function love.draw()
   for y = 1, gridYCount do
     for x = 1, gridXCount do
