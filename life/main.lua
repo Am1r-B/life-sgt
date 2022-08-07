@@ -2,17 +2,19 @@ function love.load()
   love.graphics.setBackgroundColor(1, 1, 1)
   
   cellSize = 5
+  
+  gridXCount = 70
+  gridYCount = 50
 end
 
 function love.update()
-  selectedX = math.floor(love.mouse.getX() / cellSize) + 1
-  selectedY = math.floor(love.mouse.getY() / cellSize) + 1
+  selectedX = math.min(math.floor(love.mouse.getX() / cellSize) + 1, gridXCount)
+  selectedY = math.min(math.floor(love.mouse.getY() / cellSize) + 1, gridYCount)
 end
 
 function love.draw()
-  for y = 1, 50 do
-    for x = 1, 70 do
-      -- Removed: local cellSize = 5
+  for y = 1, gridYCount do
+    for x = 1, gridXCount do
       local cellDrawSize = cellSize - 1
       
       love.graphics.setColor(.86, .86, .86)
